@@ -42,10 +42,12 @@ def init_db():
         CREATE TABLE IF NOT EXISTS distributions (
             id               INTEGER PRIMARY KEY AUTOINCREMENT,
             beneficiary_id   INTEGER,
+            inventory_id     INTEGER,
             item_name        TEXT,
             quantity         INTEGER,
             date             TEXT DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(beneficiary_id) REFERENCES beneficiaries(id) ON DELETE CASCADE
+            FOREIGN KEY(beneficiary_id) REFERENCES beneficiaries(id) ON DELETE CASCADE,
+            FOREIGN KEY(inventory_id) REFERENCES inventory(id)
         );
     """)
 
@@ -130,9 +132,12 @@ def delete_inventory_item(item_id):
     conn.commit()
     conn.close()
 
-def add_distribution(beneficiary_id, item_name, quantity):
+def add_distribution(beneficiary_id, inventory_id, item_name, quantity):
     conn = get_connection()
-    conn.execute("INSERT INTO distributions (beneficiary_id, item_name, quantity) VALUES (?,?,?)", (beneficiary_id, item_name, quantity))
+    conn.execute(
+        "INSERT INTO distributions (beneficiary_id, inventory_id, item_name, quantity) VALUES (?,?,?,?)",
+        (beneficiary_id, inventory_id, item_name, quantity)
+    )
     conn.commit()
     conn.close()
 

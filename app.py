@@ -553,7 +553,7 @@ elif sayfa == "📋 Dağıtım Kayıtları":
             if miktar_dag > mevcut:
                 st.error(f"❌ Yetersiz stok! Mevcut: {mevcut}")
             else:
-                add_distribution(ben_id, secilen_urun, miktar_dag)
+                add_distribution(ben_id, int(urun_row['id']), secilen_urun, miktar_dag)
                 update_inventory_quantity(int(urun_row['id']), mevcut - miktar_dag)
                 st.session_state.msg = f"✅ {secilen_ad} adlı kişiye {miktar_dag} {secilen_urun} başarıyla dağıtıldı!"
                 st.session_state.msg_type = "success"
