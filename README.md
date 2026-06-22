@@ -83,7 +83,7 @@ Sistem giriş gerektirmez. Rol seçimi sidebar'dan yapılır (Admin / Denetçi).
 
 ## Geliştirici
 
-**Bushra BUSTANI** — 170419929
+**Bushra BUSTANI**
 
 Danışman: **Prof. Dr. Ali BULDU**
 
